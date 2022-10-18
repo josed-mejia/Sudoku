@@ -11,8 +11,6 @@ tab2.resolver_tablero()
 print(tab2.valores())
 print(tablero.valores())
 
-#test
-
 '''
 La idea del proyecto es tomar el tablero que genera este ejecutable
 y esconder ciertos valores del sudoku al usuario en la interfaz que usaremos.
