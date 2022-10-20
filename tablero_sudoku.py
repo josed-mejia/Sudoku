@@ -259,9 +259,7 @@ class Tablero:
                     return False
                         
             return True
-                
-        
-    
+            
     def resolver_valor(self):#Resuelve el valor que la funcion self.encontrar_vacio encuentre
         coordenadas=self.encontrar_vacio()
         
@@ -337,6 +335,14 @@ class Tablero:
                 cont+=1
                 
         return valores
+    
+    def copy(self,tab2):
+        cont=0
+
+        for i in range(9):
+            for j in range(9):
+                self[i][j].valor=tab2.valores()[cont]
+                cont+=1
     
     def __str__(self):#Retorna los 9 cuadros del tablero en un string
     #Su propósito es revisar los cuadros mientras programamos
