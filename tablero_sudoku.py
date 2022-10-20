@@ -355,7 +355,7 @@ class Tablero:
                 msn+="{0}\t".format(i.valor)
             msn+="\n"
             cont=0
-        msn+="----------------------------------\n"
+        msn+="------------------------------------------------------------------\n"
         
         for j in (self.fila3,self.fila4,self.fila5):
             for i in (j[cont],j[cont+1],j[cont+2]):
@@ -370,7 +370,7 @@ class Tablero:
                 msn+="{0}\t".format(i.valor)
             msn+="\n"
             cont=0
-        msn+="----------------------------------\n"
+        msn+="------------------------------------------------------------------\n"
         
         for j in (self.fila6,self.fila7,self.fila8):
             for i in (j[cont],j[cont+1],j[cont+2]):
