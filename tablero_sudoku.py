@@ -259,7 +259,9 @@ class Tablero:
                     return False
                         
             return True
-            
+                
+        
+    
     def resolver_valor(self):#Resuelve el valor que la funcion self.encontrar_vacio encuentre
         coordenadas=self.encontrar_vacio()
         
@@ -293,56 +295,6 @@ class Tablero:
     #La idea es esconder varios valores para que el usuario pueda resolverlos por su cuenta en la interfaz
         self.crear_cuadros_ini()
         self.resolver_tablero()
-        
-    def borrar_valores(self,num_valores):#Borra valores al azar
-        if num_valores>64 or num_valores<1:
-            msn="Valor debe estar entre 1 y 64" #A lo sumo se pueden borrar 64 valores para que tenga solucion
-            error=ValueError(msn)
-            raise error    
-    
-        for i in range(9):
-            for j in range(9):
-                if self[i][j].valor==0:
-                    msn="El tablero no esta lleno" #Si encuentra un tablero no lleno, salta un error
-                    error=ValueError(msn)
-                    raise error
-    
-        from random import randint
-        
-        
-        for i in range(num_valores):
-            valor_borrado=False
-            
-            while not valor_borrado:
-                num_cuadro=randint(0, 8)
-                num_valor=randint(0, 8)
-                if self[num_cuadro][num_valor].valor==0:
-                    continue
-                else:
-                    self[num_cuadro][num_valor].valor=0
-                    valor_borrado=True
-                
-    def valores(self):#Retorna los valores de todo en tablero en una lista
-        valores={}
-        cont=0
-        
-        for i in range(81):
-            valores[i]=0
-    
-        for i in range(9):
-            for j in range(9):
-                valores[cont]=self[i][j].valor
-                cont+=1
-                
-        return valores
-    
-    def copy(self,tab2):
-        cont=0
-
-        for i in range(9):
-            for j in range(9):
-                self[i][j].valor=tab2.valores()[cont]
-                cont+=1
     
     def __str__(self):#Retorna los 9 cuadros del tablero en un string
     #Su propósito es revisar los cuadros mientras programamos
@@ -361,7 +313,7 @@ class Tablero:
                 msn+="{0}\t".format(i.valor)
             msn+="\n"
             cont=0
-        msn+="------------------------------------------------------------------\n"
+        msn+="----------------------------------\n"
         
         for j in (self.fila3,self.fila4,self.fila5):
             for i in (j[cont],j[cont+1],j[cont+2]):
@@ -376,7 +328,7 @@ class Tablero:
                 msn+="{0}\t".format(i.valor)
             msn+="\n"
             cont=0
-        msn+="------------------------------------------------------------------\n"
+        msn+="----------------------------------\n"
         
         for j in (self.fila6,self.fila7,self.fila8):
             for i in (j[cont],j[cont+1],j[cont+2]):

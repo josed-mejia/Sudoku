@@ -2,15 +2,7 @@ from tablero_sudoku import Tablero
 
 tablero=Tablero()
 tablero.crear_tablero()
-tablero.borrar_valores(64)
-
-tab2=Tablero()
-tab2.copy(tablero)
-
-tab2.resolver_tablero()
-tablero.resolver_tablero()
-
-print(tab2.valores()==tablero.valores())
+print(tablero)
 
 '''
 La idea del proyecto es tomar el tablero que genera este ejecutable
