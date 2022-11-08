@@ -455,7 +455,7 @@ canvas_intentos.grid(row=1, column=11)
 
 verify = Button(text="Verificar", default="active", width=14)
 verify.grid(row=3, column=11)
-verify.configure(command=lambda: [deshabilitar(verify),boton_verificar(obtener_colores(lista),lista,tablero,cuadros),verify.after(1200, lambda :[restaurar_colores(colores,lista),habilitar(verify)]),acabar_juego(canvas_record)])
+verify.configure(command=lambda: [deshabilitar(verify),boton_verificar(obtener_colores(lista),lista,tablero,cuadros),verify.after(1800, lambda :[restaurar_colores(colores,lista),habilitar(verify)]),acabar_juego(canvas_record)])
 
 
 
