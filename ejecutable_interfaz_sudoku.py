@@ -406,7 +406,7 @@ for l in lista:
     l.grid(row=c1, column=c2)
     c2 += 1
 
-color = ("cyan", "white")
+color = ("lime", "pink")
 contadores = [0, 0, 0, 0]
 cambia_color = lambda num_color: 1 if num_color == 0 else 0
 for i in lista:
