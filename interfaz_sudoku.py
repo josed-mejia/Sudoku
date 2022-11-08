@@ -1,3 +1,4 @@
+import tkinter.font
 from tkinter import *
 from tkinter import font
 
@@ -13,8 +14,9 @@ def change_num(new_button, cuadros, i, j):
         new_button['text'] = 0
         (cuadros[i])[j] = 0
 
-
+tablero_resuelto=False
 def verificar(tablero, cuadros):
+    cont_errores=0
     for i in range(9):
         if int(str(tablero.fila0[i])) == (cuadros[0])[i]:
             if lista[i]["state"]!=DISABLED:
@@ -25,8 +27,10 @@ def verificar(tablero, cuadros):
         elif (cuadros[0])[i] != 0:
             print("Tienes un error en = fila 1, columna {0}".format(i + 1))
             lista[i].configure(bg="red")
+            cont_errores+=1
         else:
             lista[i].configure(bg="#ffdb78")
+            cont_errores+=1
 
     for i in range(9):
         if int(str(tablero.fila1[i])) == (cuadros[1])[i]:
@@ -38,8 +42,10 @@ def verificar(tablero, cuadros):
         elif (cuadros[1])[i] != 0:
             print("Tienes un error en = fila 2, columna {0}".format(i + 1))
             lista[i+9].configure(bg="red")
+            cont_errores+=1
         else:
             lista[i+9].configure(bg="#ffdb78")
+            cont_errores+=1
 
     for i in range(9):
         if int(str(tablero.fila2[i])) == (cuadros[2])[i]:
@@ -51,8 +57,10 @@ def verificar(tablero, cuadros):
         elif (cuadros[2])[i] != 0:
             print("Tienes un error en = fila 3, columna {0}".format(i + 1))
             lista[i + 9 * 2].configure(bg="red")
+            cont_errores+=1
         else:
             lista[i + 9 * 2].configure(bg="#ffdb78")
+            cont_errores+=1
 
     for i in range(9):
         if int(str(tablero.fila3[i])) == (cuadros[3])[i]:
@@ -64,8 +72,10 @@ def verificar(tablero, cuadros):
         elif (cuadros[3])[i] != 0:
             print("Tienes un error en = fila 4, columna {0}".format(i + 1))
             lista[i + 9*3].configure(bg="red")
+            cont_errores+=1
         else:
             lista[i + 9*3].configure(bg="#ffdb78")
+            cont_errores+=1
 
     for i in range(9):
         if int(str(tablero.fila4[i])) == (cuadros[4])[i]:
@@ -77,8 +87,10 @@ def verificar(tablero, cuadros):
         elif (cuadros[4])[i] != 0:
             print("Tienes un error en = fila 5, columna {0}".format(i + 1))
             lista[i + 9*4].configure(bg="red")
+            cont_errores+=1
         else:
             lista[i + 9 * 4].configure(bg="#ffdb78")
+            cont_errores+=1
 
     for i in range(9):
         if int(str(tablero.fila5[i])) == (cuadros[5])[i]:
@@ -90,8 +102,13 @@ def verificar(tablero, cuadros):
         elif (cuadros[5])[i] != 0:
             print("Tienes un error en = fila 6, columna {0}".format(i + 1))
             lista[i + 9*5].configure(bg="red")
+            cont_errores+=1
         else:
             lista[i + 9 * 5].configure(bg="#ffdb78")
+            cont_errores+=1
+        if cont_errores==0:
+            global tablero_resuelto
+            tablero_resuelto=True
 
     for i in range(9):
         if int(str(tablero.fila6[i])) == (cuadros[6])[i]:
@@ -103,8 +120,10 @@ def verificar(tablero, cuadros):
         elif (cuadros[6])[i] != 0:
             print("Tienes un error en = fila 7, columna {0}".format(i + 1))
             lista[i + 9*6].configure(bg="red")
+            cont_errores+=1
         else:
             lista[i + 9 * 6].configure(bg="#ffdb78")
+            cont_errores+=1
 
     for i in range(9):
         if int(str(tablero.fila7[i])) == (cuadros[7])[i]:
@@ -116,8 +135,10 @@ def verificar(tablero, cuadros):
         elif (cuadros[7])[i] != 0:
             print("Tienes un error en = fila 8, columna {0}".format(i + 1))
             lista[i + 9*7].configure(bg="red")
+            cont_errores+=1
         else:
             lista[i + 9 * 7].configure(bg="#ffdb78")
+            cont_errores+=1
 
     for i in range(9):
         if int(str(tablero.fila8[i])) == (cuadros[8])[i]:
@@ -129,9 +150,13 @@ def verificar(tablero, cuadros):
         elif (cuadros[8])[i] != 0:
             print("Tienes un error en = fila 9, columna {0}".format(i + 1))
             lista[i + 9*8].configure(bg="red")
+            cont_errores+=1
         else:
             lista[i + 9 * 8].configure(bg="#ffdb78")
+            cont_errores+=1
 
+    if cont_errores==0:
+        tablero_resuelto=True
 
 def crear_juego(tablero, cuadros):
     import random
@@ -238,6 +263,39 @@ def deshabilitar(boton):
 
 def habilitar(boton):
     boton["state"] = ACTIVE
+
+def acabar_juego(canvas_record):
+    global tablero_resuelto
+    global num_intentos
+    if tablero_resuelto:
+
+        ventana_acabar=Tk()
+        canvas_cerrar = Canvas(ventana_acabar, width=300, height=150, bg="#F0F0F0")
+        canvas_cerrar.create_text(150, 75, text="Felicidades! ha resuelto el sudoku\nen {0} intento{1}\n\nPuede cerrar ambas ventantas".format(num_intentos,("s" if num_intentos!=1 else "")), fill="black", font=('Helvetica 11 bold'))
+        canvas_cerrar.grid(row=1,column=1)
+
+        archivo_mejor_juego=open("Mejor_juego","r")
+        record=int(archivo_mejor_juego.read())
+        archivo_mejor_juego.close()
+
+
+        if record>num_intentos or record==0:
+            archivo_mejor_juego = open("Mejor_juego", "w")
+            archivo_mejor_juego.write(str(num_intentos))
+            canvas_record.delete('all')
+            canvas_record.create_text(50, 25, text="Mejor juego:\n{0} intento{1}".format((num_intentos),("s" if num_intentos!=1 else "")), font=('Helvetica 11 bold'),fill="black")
+            archivo_mejor_juego.close()
+
+        ventana_acabar.mainloop()
+
+
+
+def borrar_intentos(canvas_record):
+    archivo_mejor_juego = open("Mejor_juego", "w")
+    archivo_mejor_juego.write("0")
+    canvas_record.delete('all')
+    canvas_record.create_text(50, 25, text="Sin mejor\n    juego", fill="black", font=('Helvetica 11 bold'))
+    archivo_mejor_juego.close()
 
 cuadros = {}
 for i in range(9):
@@ -377,6 +435,19 @@ for i in lista:
 
 print(tablero)
 
+archivo_mejor_juego=open("Mejor_juego","r")
+mejor_juego=int(archivo_mejor_juego.read())
+
+canvas_record= Canvas(sudoku, width= 100, height= 50, bg="#F0F0F0")
+canvas_record.create_text(50, 25, text="{0}".format("Mejor juego:\n{0} intento{1}".format((mejor_juego),("s" if mejor_juego!=1 else "")), fill="black", font=('Helvetica 11 bold')) if mejor_juego!=0 else "Sin mejor\n    juego", fill="black", font=('Helvetica 11 bold'))
+canvas_record.grid(row=5, column=11)
+
+archivo_mejor_juego.close()
+
+reset = Button(text="Borrar mejor\njuego", default="active", width=14)
+reset.grid(row=7, column=11)
+reset.configure(command=lambda: [borrar_intentos(canvas_record)])
+
 
 canvas_intentos= Canvas(sudoku, width= 100, height= 50, bg="#F0F0F0")
 canvas_intentos.create_text(50, 25, text="Intentos: {0}".format(num_intentos), fill="black", font=('Helvetica 11 bold'))
@@ -384,13 +455,8 @@ canvas_intentos.grid(row=1, column=11)
 
 verify = Button(text="Verificar", default="active", width=14)
 verify.grid(row=3, column=11)
-verify.configure(command=lambda: [deshabilitar(verify),boton_verificar(obtener_colores(lista),lista,tablero,cuadros),verify.after(1200, lambda :[restaurar_colores(colores,lista),habilitar(verify)])])
+verify.configure(command=lambda: [deshabilitar(verify),boton_verificar(obtener_colores(lista),lista,tablero,cuadros),verify.after(1200, lambda :[restaurar_colores(colores,lista),habilitar(verify)]),acabar_juego(canvas_record)])
 
-canvas_record= Canvas(sudoku, width= 100, height= 50, bg="#F0F0F0")
-canvas_record.create_text(50, 25, text="{0}".format("Mejor juego:\n{0} intento{1}".format(num_intentos,("s" if num_intentos!=1 else "")), fill="black", font=('Helvetica 11 bold')) if num_intentos!=0 else "Sin mejor\n    juego", fill="black", font=('Helvetica 11 bold'))
-canvas_record.grid(row=5, column=11)
 
-reset = Button(text="Borrar mejor\njuego", default="active", width=14)
-reset.grid(row=7, column=11)
 
 sudoku.mainloop()
