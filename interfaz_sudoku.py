@@ -212,10 +212,10 @@ def intento():
     global num_intentos
     num_intentos+=1
 
-def actualizar_intentos(canvas):
+def actualizar_intentos(canvas_intentos):
     global num_intentos
-    canvas.delete('all')
-    canvas.create_text(50, 25, text="Intentos: {0}".format(num_intentos), fill="black", font=('Helvetica 11 bold'))
+    canvas_intentos.delete('all')
+    canvas_intentos.create_text(50, 25, text="Intentos: {0}".format(num_intentos), fill="black", font=('Helvetica 11 bold'))
 
 colores=[]
 def obtener_colores(lista):
@@ -225,17 +225,19 @@ def obtener_colores(lista):
         colores.append(i.cget("bg"))
 
 def restaurar_colores(colores,lista):
-    from time import sleep
-    sleep(1)
     for i in range(81):
         lista[i].configure(bg=colores[i])
 
 def boton_verificar(colores,lista,tablero,cuadro):
     intento()
-    actualizar_intentos(canvas)
+    actualizar_intentos(canvas_intentos)
     verificar(tablero, cuadros)
-    #restaurar_colores(colores,lista)
 
+def deshabilitar(boton):
+    boton["state"] = DISABLED
+
+def habilitar(boton):
+    boton["state"] = ACTIVE
 
 cuadros = {}
 for i in range(9):
@@ -376,13 +378,13 @@ for i in lista:
 print(tablero)
 
 
-canvas= Canvas(sudoku, width= 100, height= 50, bg="#F0F0F0")
-canvas.create_text(50, 25, text="Intentos: {0}".format(num_intentos), fill="black", font=('Helvetica 11 bold'))
-canvas.grid(row=2, column=11)
+canvas_intentos= Canvas(sudoku, width= 100, height= 50, bg="#F0F0F0")
+canvas_intentos.create_text(50, 25, text="Intentos: {0}".format(num_intentos), fill="black", font=('Helvetica 11 bold'))
+canvas_intentos.grid(row=2, column=11)
 
 verify = Button(text="Verificar", default="active", width=14)
 verify.grid(row=4, column=11)
-verify.configure(command=lambda: [boton_verificar(obtener_colores(lista),lista,tablero,cuadros),verify.after(800, lambda :[restaurar_colores(colores,lista)])])
+verify.configure(command=lambda: [deshabilitar(verify),boton_verificar(obtener_colores(lista),lista,tablero,cuadros),verify.after(1200, lambda :[restaurar_colores(colores,lista),habilitar(verify)])])
 
 
 sudoku.mainloop()
