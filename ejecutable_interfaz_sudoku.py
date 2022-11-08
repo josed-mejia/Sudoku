@@ -274,13 +274,13 @@ def acabar_juego(canvas_record):
         canvas_cerrar.create_text(150, 75, text="Felicidades! ha resuelto el sudoku\nen {0} intento{1}\n\nPuede cerrar ambas ventantas".format(num_intentos,("s" if num_intentos!=1 else "")), fill="black", font=('Helvetica 11 bold'))
         canvas_cerrar.grid(row=1,column=1)
 
-        archivo_mejor_juego=open("Mejor_juego","r")
+        archivo_mejor_juego=open("Mejor_juego.txt","r")
         record=int(archivo_mejor_juego.read())
         archivo_mejor_juego.close()
 
 
         if record>num_intentos or record==0:
-            archivo_mejor_juego = open("Mejor_juego", "w")
+            archivo_mejor_juego = open("Mejor_juego.txt", "w")
             archivo_mejor_juego.write(str(num_intentos))
             canvas_record.delete('all')
             canvas_record.create_text(50, 25, text="Mejor juego:\n{0} intento{1}".format((num_intentos),("s" if num_intentos!=1 else "")), font=('Helvetica 11 bold'),fill="black")
@@ -291,7 +291,7 @@ def acabar_juego(canvas_record):
 
 
 def borrar_intentos(canvas_record):
-    archivo_mejor_juego = open("Mejor_juego", "w")
+    archivo_mejor_juego = open("Mejor_juego.txt", "w")
     archivo_mejor_juego.write("0")
     canvas_record.delete('all')
     canvas_record.create_text(50, 25, text="Sin mejor\n    juego", fill="black", font=('Helvetica 11 bold'))
@@ -435,7 +435,7 @@ for i in lista:
 
 print(tablero)
 
-archivo_mejor_juego=open("Mejor_juego","r")
+archivo_mejor_juego=open("Mejor_juego.txt","r")
 mejor_juego=int(archivo_mejor_juego.read())
 
 canvas_record= Canvas(sudoku, width= 100, height= 50, bg="#F0F0F0")
