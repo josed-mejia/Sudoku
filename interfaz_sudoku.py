@@ -380,11 +380,17 @@ print(tablero)
 
 canvas_intentos= Canvas(sudoku, width= 100, height= 50, bg="#F0F0F0")
 canvas_intentos.create_text(50, 25, text="Intentos: {0}".format(num_intentos), fill="black", font=('Helvetica 11 bold'))
-canvas_intentos.grid(row=2, column=11)
+canvas_intentos.grid(row=1, column=11)
 
 verify = Button(text="Verificar", default="active", width=14)
-verify.grid(row=4, column=11)
+verify.grid(row=3, column=11)
 verify.configure(command=lambda: [deshabilitar(verify),boton_verificar(obtener_colores(lista),lista,tablero,cuadros),verify.after(1200, lambda :[restaurar_colores(colores,lista),habilitar(verify)])])
 
+canvas_record= Canvas(sudoku, width= 100, height= 50, bg="#F0F0F0")
+canvas_record.create_text(50, 25, text="{0}".format("Mejor juego:\n{0} intento{1}".format(num_intentos,("s" if num_intentos!=1 else "")), fill="black", font=('Helvetica 11 bold')) if num_intentos!=0 else "Sin mejor\n    juego", fill="black", font=('Helvetica 11 bold'))
+canvas_record.grid(row=5, column=11)
+
+reset = Button(text="Borrar mejor\njuego", default="active", width=14)
+reset.grid(row=7, column=11)
 
 sudoku.mainloop()
