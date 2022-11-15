@@ -163,7 +163,7 @@ def crear_juego(tablero, cuadros):
     numeros = []
     for i in range(9):
         numeros.append(i)
-    for j in range(4):
+    for j in range(5):
         n = random.choice(numeros)
         (cuadros[0])[n] = int(str(tablero.fila0[n]))
         numeros.remove(n)
@@ -171,7 +171,7 @@ def crear_juego(tablero, cuadros):
     numeros1 = []
     for i in range(9):
         numeros1.append(i)
-    for j in range(4):
+    for j in range(5):
         n = random.choice(numeros1)
         (cuadros[1])[n] = int(str(tablero.fila1[n]))
         numeros1.remove(n)
@@ -179,7 +179,7 @@ def crear_juego(tablero, cuadros):
     numeros2 = []
     for i in range(9):
         numeros2.append(i)
-    for j in range(4):
+    for j in range(5):
         n = random.choice(numeros2)
         (cuadros[2])[n] = int(str(tablero.fila2[n]))
         numeros2.remove(n)
@@ -187,7 +187,7 @@ def crear_juego(tablero, cuadros):
     numeros3 = []
     for i in range(9):
         numeros3.append(i)
-    for j in range(4):
+    for j in range(5):
         n = random.choice(numeros3)
         (cuadros[3])[n] = int(str(tablero.fila3[n]))
         numeros3.remove(n)
@@ -195,7 +195,7 @@ def crear_juego(tablero, cuadros):
     numeros4 = []
     for i in range(9):
         numeros4.append(i)
-    for j in range(4):
+    for j in range(5):
         n = random.choice(numeros4)
         (cuadros[4])[n] = int(str(tablero.fila4[n]))
         numeros4.remove(n)
@@ -203,7 +203,7 @@ def crear_juego(tablero, cuadros):
     numeros5 = []
     for i in range(9):
         numeros5.append(n)
-    for j in range(4):
+    for j in range(5):
         n = random.choice(numeros5)
         (cuadros[5])[n] = int(str(tablero.fila5[n]))
         numeros5.remove(n)
@@ -211,7 +211,7 @@ def crear_juego(tablero, cuadros):
     numeros6 = []
     for i in range(9):
         numeros6.append(i)
-    for j in range(4):
+    for j in range(5):
         n = random.choice(numeros6)
         (cuadros[6])[n] = int(str(tablero.fila6[n]))
         numeros6.remove(n)
@@ -219,7 +219,7 @@ def crear_juego(tablero, cuadros):
     numeros7 = []
     for i in range(9):
         numeros7.append(i)
-    for j in range(4):
+    for j in range(5):
         n = random.choice(numeros7)
         (cuadros[7])[n] = int(str(tablero.fila7[n]))
         numeros7.remove(n)
@@ -227,7 +227,7 @@ def crear_juego(tablero, cuadros):
     numeros8 = []
     for i in range(9):
         numeros8.append(i)
-    for j in range(4):
+    for j in range(5):
         n = random.choice(numeros8)
         (cuadros[8])[n] = int(str(tablero.fila8[n]))
         numeros8.remove(n)
@@ -406,7 +406,7 @@ for l in lista:
     l.grid(row=c1, column=c2)
     c2 += 1
 
-color = ("lime", "pink")
+color = ("sky blue", "snow")
 contadores = [0, 0, 0, 0]
 cambia_color = lambda num_color: 1 if num_color == 0 else 0
 for i in lista:
