@@ -435,7 +435,7 @@ for i in lista:
 for i in lista:
     if i['text'] != 0:
         i["state"] = DISABLED
-        i["font"] = font.Font(weight="bold", slant="italic", size=9) #Aquí desabilita todos los botones que tengan valores ya resueltos
+        i["font"] = font.Font(weight="bold", slant="italic", size=9) #Aquí deshabilita todos los botones que tengan valores ya resueltos
 
 print(tablero)
 
