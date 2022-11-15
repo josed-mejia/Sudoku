@@ -202,7 +202,7 @@ def crear_juego(tablero, cuadros):
 
     numeros5 = []
     for i in range(9):
-        numeros5.append(n)
+        numeros5.append(i)
     for j in range(5):
         n = random.choice(numeros5)
         (cuadros[5])[n] = int(str(tablero.fila5[n]))
@@ -270,6 +270,7 @@ def acabar_juego(canvas_record):
     if tablero_resuelto:
 
         ventana_acabar=Tk()
+        ventana_acabar.title("Felicitaciones!!!!!!!!!")
         canvas_cerrar = Canvas(ventana_acabar, width=300, height=150, bg="#F0F0F0")
         canvas_cerrar.create_text(150, 75, text="Felicidades! ha resuelto el sudoku\nen {0} intento{1}\n\nPuede cerrar ambas ventantas".format(num_intentos,("s" if num_intentos!=1 else "")), fill="black", font=('Helvetica 11 bold'))
         canvas_cerrar.grid(row=1,column=1)
@@ -309,6 +310,7 @@ tablero.crear_tablero()
 crear_juego(tablero, cuadros)
 
 sudoku = Tk()
+sudoku.title("Sudoku")
 
 lista = []
 for i in range(9):
