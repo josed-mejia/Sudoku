@@ -437,7 +437,6 @@ for i in lista:
         i["state"] = DISABLED
         i["font"] = font.Font(weight="bold", slant="italic", size=9) #Aquí deshabilita todos los botones que tengan valores ya resueltos
 
-print(tablero)
 
 archivo_mejor_juego=open("Mejor_juego.txt","r")
 mejor_juego=int(archivo_mejor_juego.read()) #Aquí se lee el record que hay de intentos
